@@ -15,8 +15,8 @@ let currentPlayer;
 let available = [];
 
 function setup() {
-  createCanvas(400, 400);
-  frameRate(30);
+  createCanvas(400, 500);
+  frameRate(5);
   currentPlayer = floor(random(players.length));
   for (let j = 0; j < 3; j++) {
     for (let i = 0; i < 3; i++) {
@@ -75,13 +75,13 @@ function nextTurn() {
 // }
 
 function draw() {
-  background(255);
+  background(0);
   let w = width / 3;
-  let h = height / 3;
+  let h = (height - 100) / 3;
   strokeWeight(4);
 
-  line(w, 0, w, height);
-  line(w * 2, 0, w * 2, height);
+  line(w, 0, w, (height - 100));
+  line(w * 2, 0, w * 2, (height - 100));
   line(0, h, width, h);
   line(0, h * 2, width, h * 2);
 
@@ -92,6 +92,7 @@ function draw() {
       let spot = board[i][j];
       textSize(32);
       let r = w / 4;
+      stroke(255);
       if (spot == players[1]) {
         noFill();
         ellipse(x, y, r * 2);
@@ -107,6 +108,9 @@ function draw() {
     noLoop();
     let resultP = createP('');
     resultP.style('font-size', '32pt');
+    resultP.style('font-family', 'Arial');
+    resultP.style('color', '#FFF');
+    resultP.position(width / 2 - 70, height - 120);
     if (result == 'tie') {
       resultP.html('Tie!');
     } else {
